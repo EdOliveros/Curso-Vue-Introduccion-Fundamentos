@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue</title>
+</head>
+<body>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <div id="app"></div>
+
+    <script>
+        const vm = Vue.createApp({
+            data() {
+                return {
+                    firstName: 'Ed',
+                    lastName: 'Oliveros',
+                    now: new Date()
+                };
+            },
+            methods: {
+            },
+            computed: {
+                fullName() {
+                    return this.firstName + ' ' + this.lastName
+                },
+                today() {
+                    return this.now.toLocaleDateString()
+                },
+            },
+            template: `
+                <div>{{ firstName }} {{ lastName }}</div>
+                <div>{{ now.toLocaleDateString() }}</div>
+                <div>{{ fullName }}</div>
+                <div>{{ today }}</div>
+            `
+        }).mount('#app')
+        console.log(vm)
+    </script>
+</body>
+</html>
+
+<!-- 
+    Las funciones computadas me permiten tener menos js en mi template.
+-->
