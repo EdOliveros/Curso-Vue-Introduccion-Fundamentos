@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue</title>
+</head>
+<body>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <div id="app"></div>
+
+    <script>
+        const vm = Vue.createApp({
+            data() {
+                return {
+                    text: 'Puerta Cerrada',
+                    open: false,
+                };
+            },
+            methods: {
+            },
+            computed: {
+                label() {
+                    return this.open ? 'Cerrar' : 'Abrir'
+                }
+            },
+            watch: {
+                open(value) {
+                    if(value) {
+                        this.text = 'Puerta Abierta'
+                    } else {
+                        this.text = 'Puerta Cerrada'
+                    }
+                }
+            },
+            template: `
+                <div>{{ text }}</div>
+                <button @click='open = !open'>{{ label }}</button>
+            `
+        }).mount('#app')
+        console.log(vm)
+    </script>
+</body>
+</html>
+
+<!-- 
+    El watcher debe tener el mismo nombre de la variable que se quiere escuchar.
+
+     <script>
+        const vm = Vue.createApp({
+            data() {
+                return {
+                    text: 'Hola Vue',
+                };
+            },
+            methods: {
+            },
+            computed: {
+            },
+            watch: {
+                text(value, old) {
+                    console.log('Watcher!', value, old);
+                }
+            },
+            template: `
+                <div>{{ text }}</div>
+            `
+        }).mount('#app')
+        console.log(vm)
+    </script>
+-->
