@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue</title>
+</head>
+<body>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <div id="app"></div>
+
+    <script>
+        const vm = Vue.createApp({
+            data() {
+                return {
+                    text: 'Hola, Vue',
+                };
+            },
+            methods: {
+                // input(e) {
+                //     this.text = e.target.value
+                //     console.log(e)
+                //     console.log(e.target.value)
+                // }
+            },
+            template: `
+                <p>{{ text }}</p>
+                <input 
+                    type='text'
+                    v-model='text'
+                />
+            `
+            // template: `
+            //     <p>{{ text }}</p>
+            //     <input 
+            //         type='text'
+            //         @input='input' 
+            //         :value='text'
+            //     />
+            // `
+
+            // template: `
+            //     <p>{{ text }}</p>
+            //     <input 
+            //         type='text'
+            //         v-on:input='input' 
+            //         v-bind:value='text'
+            //     />
+            // `
+
+            // template: `
+            //     <p>{{ text }}</p>
+            //     <input type='text' placeholder='Escribe tu texto aqui' v-on:change='input'></input>
+            // `
+        }).mount('#app')
+        console.log(vm)
+    </script>
+</body>
+</html>
+
+<!-- 
+    Actualizando una variable desde un input.
+    v-on:change me permite llamar una funcion.
+    v-on:input me permite tener reactividad, en tiempo real.
+    v-bind:value pone el placeholder desde la variable.
+
+    podemos tener shortcuts de v-on y de v-bind
+    v-on => @
+    v-bind => :
+
+    v-model => me permite tener reactividad en ambos sentidos, resumiendo toda mi logica anterior, v-on, v-bind, y mi method en una sola directiva. 
+-->
