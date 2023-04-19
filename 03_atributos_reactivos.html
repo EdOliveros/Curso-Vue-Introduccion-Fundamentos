@@ -13,10 +13,16 @@
     <script>
         const vm = Vue.createApp({
             data() {
-                return {
-                    
+                return { 
+                    atr: 'src',
+                    img: 'https://static.platzi.com/media/platzi-isotipo@2x.png',
                 };
             },
+            template: `
+                <img v-bind:src="img" v-bind:alt="img">
+                <img v-bind:['src']="img" v-bind:alt="img">
+                <img v-bind:[atr]="img" v-bind:alt="img">
+            `
         }).mount('#app')
         console.log(vm)
     </script>
@@ -24,5 +30,7 @@
 </html>
 
 <!-- 
-    
+    v-bind modificar atributos de cualquier componente
+    v-bind directiva, src el argumente => v-bind:src
+    v-bind:['src']="img" mi argumento puede ser una variable, asi tambien puede ser dinamico.
 -->
