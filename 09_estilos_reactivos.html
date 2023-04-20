@@ -16,6 +16,9 @@
                 return {
                     text: 'Puerta Cerrada',
                     open: false,
+                    // styles: {
+                    //     backgroundColor: 'gray',
+                    // }
                 };
             },
             methods: {
@@ -23,9 +26,13 @@
             computed: {
                 label() {
                     return this.open ? 'Cerrar' : 'Abrir'
+                },
+                styles() {
+                    return this.open ? [ 'open' ] : [ 'closed' ];
                 }
             },
             watch: {
+
                 open(value) {
                     if(value) {
                         this.text = 'Puerta Abierta'
@@ -33,13 +40,30 @@
                         this.text = 'Puerta Cerrada'
                     }
                 }
+
+                // open(value) {
+                //     if(value) {
+                //         this.text = 'Puerta Abierta'
+                //         this.styles.backgroundColor = '#b5e7a0'
+                //     } else {
+                //         this.text = 'Puerta Cerrada'
+                //         this.styles.backgroundColor = '#eca1a6'
+                //     }
+                // }
             },
             template: `
-                <div class='container'>
+                <div class='container' :class="styles">
                     <h2>{{ text }}</h2>
                     <button @click='open = !open'>{{ label }}</button>
                 </div>
             `
+
+            // template: `
+            //     <div class='container' :style='styles'>
+            //         <h2>{{ text }}</h2>
+            //         <button @click='open = !open'>{{ label }}</button>
+            //     </div>
+            // `
         }).mount('#app')
         console.log(vm)
     </script>
