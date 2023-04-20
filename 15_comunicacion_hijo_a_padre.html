@@ -20,25 +20,34 @@
                     ],
                 }
             },
+            methods: {
+                remove(index) {
+                    const lista = this.items.filter((el, a) => a !== index)
+                    this.items = lista
+                }
+            },
             template: `
                 <ul>
                     <v-item 
-                        v-for='item in items' 
-                        v-bind:text='item'>
-                    </v-item>
+                        v-for='(item, index) in items' 
+                        v-bind:text='item'
+                        v-on:remove='remove(index)'
+                    />
                 </ul>
             `
         });
 
         app.component('v-item', {
             props: {
-                text: {
-                    
-                    default: 'texto vacio'
-                },
+                text: String,
+            },
+            methods: {
+                rm() {
+                    this.$emit('remove')
+                }
             },
             template: `
-                <li>
+                <li v-on:click='rm'>
                     {{ text }}
                 </li>
             `
